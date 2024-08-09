@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-
 function AddHabitModal(props: { habitType?: string }) {
     const [habitName, setHabitName] = useState("");
     const [habitDescription, setHabitDescription] = useState("");
@@ -20,10 +18,9 @@ function AddHabitModal(props: { habitType?: string }) {
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
         habits.newHabits.push({ name: habitName, description: habitDescription });
-        console.log(habits);
         setHabitName("");
         setHabitDescription("");
-
+        handleModal("close");
     }
 
     function handleModal(state: string) {
