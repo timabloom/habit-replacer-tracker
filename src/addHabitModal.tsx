@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-function AddHabitModal(props: { habitType?: string }) {
+function AddHabitModal(props: { habitType: string }) {
     const [habitName, setHabitName] = useState("");
     const [habitDescription, setHabitDescription] = useState("");
 
     interface Habits {
         newHabits: Habit[];
+        oldHabits: Habit[];
     }
 
     interface Habit {
@@ -13,22 +14,34 @@ function AddHabitModal(props: { habitType?: string }) {
         description: string;
     }
 
-    const habits: Habits = { newHabits: [] };
+    const habits: Habits = { newHabits: [], oldHabits: [] };
 
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
-        habits.newHabits.push({ name: habitName, description: habitDescription });
+        if (props.habitType === "old") {
+            habits.oldHabits.push({ name: habitName, description: habitDescription });
+        } else {
+            habits.newHabits.push({ name: habitName, description: habitDescription });
+        }
+
+        console.log(habits);
+
         setHabitName("");
         setHabitDescription("");
         handleModal("close");
     }
 
     function handleModal(state: string) {
-        const modal = document.getElementById("add-habit-modal") as HTMLDialogElement;
-        if (state === "open") {
-            return modal.showModal();
+        const modal = document.getElementsByClassName("add-habit-modal") as HTMLCollectionOf<HTMLDialogElement>;
+        if (state === "open" && props.habitType === "old") {
+            modal[0].showModal();
+        } else if (state === "open") {
+            modal[1].showModal();
+        } else if (props.habitType === "old") {
+            modal[0].close();
+        } else {
+            modal[1].close();
         }
-        return modal.close();
     }
 
     return (
@@ -37,7 +50,8 @@ function AddHabitModal(props: { habitType?: string }) {
                 onClick={() => handleModal("open")}>
                 {props.habitType === "old" ? "Add Old Habit" : "Add New Habit"}
             </button>
-            <dialog id="add-habit-modal" className="modal">
+
+            <dialog className="add-habit-modal modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Add Habit to the List</h3>
                     <p className="py-4">This app currently only supports habits with a duration.</p>

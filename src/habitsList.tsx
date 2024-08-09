@@ -7,7 +7,7 @@ function HabitsList() {
             <h2>Old Habits</h2>
             <AddHabitModal habitType="old" />
             <h2>New Habits</h2>
-            <AddHabitModal />
+            <AddHabitModal habitType="new" />
         </>
     );
 }
