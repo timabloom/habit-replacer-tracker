@@ -5,16 +5,10 @@ function AddHabitModal(props: { habitType: string, habitsData: HabitsData, habit
     const [habitName, setHabitName, habitDescription, setHabitDescription] = props.habitState;
 
     function handleModal(state: string) {
-        const modal = document.getElementsByClassName("add-habit-modal") as HTMLCollectionOf<HTMLDialogElement>;
-        if (state === "open" && props.habitType === "old") {
-            modal[0].showModal();
-        } else if (state === "open") {
-            modal[1].showModal();
-        } else if (props.habitType === "old") {
-            modal[0].close();
-        } else {
-            modal[1].close();
-        }
+        const modal = document.getElementById(`${props.habitType}`) as HTMLDialogElement;
+        return state === "open"
+            ? modal.showModal()
+            : modal.close();
     }
 
     function handleSubmit(event: { preventDefault: () => void; }) {
@@ -37,7 +31,7 @@ function AddHabitModal(props: { habitType: string, habitsData: HabitsData, habit
                 {props.habitType === "old" ? "Add Old" : "Add New"}
             </button>
 
-            <dialog className="add-habit-modal modal">
+            <dialog className="modal" id={props.habitType}>
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Add Habit</h3>
                     <p className="py-4">This app currently only supports habits with a duration.</p>
