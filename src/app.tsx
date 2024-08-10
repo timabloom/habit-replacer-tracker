@@ -3,6 +3,7 @@ import Nav from "./nav";
 import { useState } from "react";
 import UpdateActivity from "./updateActivity/updateActivity";
 import habitsData from "./db";
+import HabitsStats from "./habitStats/habitStats";
 
 export type HabitStateManagement = [
   habitName: string,
@@ -32,6 +33,7 @@ function App() {
       <main>
         <HabitsList habitsData={habitsData} habitState={habitState} />
         <UpdateActivity habitsData={habitsData} activityState={activityState} />
+        <HabitsStats />
       </main>
       <Nav />
     </>
