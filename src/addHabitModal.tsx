@@ -1,6 +1,7 @@
-import { Habits } from "./habitsList";
+import { HabitsData, HabitStateManagement } from "./app";
 
-function AddHabitModal(props: { habitType: string, habits: Habits, habitName: string, setHabitName: React.Dispatch<React.SetStateAction<string>>, habitDescription: string, setHabitDescription: React.Dispatch<React.SetStateAction<string>> }) {
+function AddHabitModal(props: {habitType: string, habitsData:HabitsData, habitState: HabitStateManagement}) {
+    const [habitName, setHabitName, habitDescription, setHabitDescription] = props.habitState;
 
     function handleModal(state: string) {
         const modal = document.getElementsByClassName("add-habit-modal") as HTMLCollectionOf<HTMLDialogElement>;
@@ -18,13 +19,13 @@ function AddHabitModal(props: { habitType: string, habits: Habits, habitName: st
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
         if (props.habitType === "old") {
-            props.habits.oldHabits.push({ id: 1, name: props.habitName, description: props.habitDescription });
+            props.habitsData.oldHabits.push({ id: 1, name: habitName, description: habitDescription });
         } else {
-            props.habits.newHabits.push({ id: 2, name: props.habitName, description: props.habitDescription });
+            props.habitsData.newHabits.push({ id: 2, name: habitName, description: habitDescription });
         }
 
-        props.setHabitName("");
-        props.setHabitDescription("");
+        setHabitName("");
+        setHabitDescription("");
         handleModal("close");
     }
 
@@ -48,13 +49,13 @@ function AddHabitModal(props: { habitType: string, habits: Habits, habitName: st
                                     <span className="label-text">Habit *</span>
                                 </div>
                                 <input className="input input-bordered w-full max-w-xs" type="text" placeholder="Type here"
-                                    value={props.habitName} onChange={(event) => props.setHabitName(event.target.value)} required />
+                                    value={habitName} onChange={(event) => setHabitName(event.target.value)} required />
                                 <div className="label">
                                     <span className="label-text">Description</span>
                                 </div>
                                 <input className="input input-bordered w-full max-w-xs"
                                     type="text" placeholder="Type here"
-                                    value={props.habitDescription} onChange={(event) => props.setHabitDescription(event.target.value)} />
+                                    value={habitDescription} onChange={(event) => setHabitDescription(event.target.value)} />
                             </label>
                             <button className="btn btn-wide" type="submit" >Submit</button>
                         </form>
