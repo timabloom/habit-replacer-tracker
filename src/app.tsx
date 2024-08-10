@@ -8,10 +8,16 @@ export interface HabitsData {
   oldHabits: Habit[];
 }
 
-interface Habit {
+export interface Habit {
   id: number;
   name: string;
   description: string;
+  timeSpent: HabitActivity[];
+}
+
+interface HabitActivity {
+  date: string;
+  minutes: number;
 }
 
 export type HabitStateManagement = [
@@ -32,7 +38,7 @@ function App() {
     <>
       <main>
         <HabitsList habitsData={habitsData} habitState={habitState} />
-        <UpdateHabits habitsData={habitsData} habitState={habitState}/> 
+        <UpdateHabits habitsData={habitsData} />
       </main>
       <Nav />
     </>
