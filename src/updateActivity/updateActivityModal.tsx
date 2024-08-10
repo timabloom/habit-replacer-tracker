@@ -1,24 +1,19 @@
-import { ActivityStateManagement, Habit } from "../app";
+import { ActivityStateManagement } from "../app";
+import { Habit } from "../db";
 
-function UpdateActivityModal(props: { id: number, habitName: string, habitActivity: Habit, habitType: string, activityState: ActivityStateManagement }) {
+function UpdateActivityModal(props: { id: string, habitName: string, habitActivity: Habit, activityState: ActivityStateManagement }) {
     const [date, setDate, minutes, setMinutes] = props.activityState;
 
     function handleModal(state: string) {
-        const modal = document.getElementsByClassName("update-habit-modal") as HTMLCollectionOf<HTMLDialogElement>;
-        if (state === "open" && props.habitType === "old") {
-            modal[0].showModal();
-        } else if (state === "open") {
-            modal[1].showModal();
-        } else if (props.habitType === "old") {
-            modal[0].close();
-        } else {
-            modal[1].close();
-        }
+        const modal = document.getElementById(`${props.id}`) as HTMLDialogElement;
+        return state === "open"
+            ? modal.showModal()
+            : modal.close();
     }
 
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
-        props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: 1 });
+        props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: `${crypto.randomUUID}` });
 
         setDate(new Date().toJSON().slice(0, 10));
         setMinutes(0);
@@ -32,7 +27,7 @@ function UpdateActivityModal(props: { id: number, habitName: string, habitActivi
                 Update
             </button>
 
-            <dialog className="update-habit-modal modal">
+            <dialog className="modal" id={`${props.id}`}>
                 <div className="modal-box mb-24">
                     <h3 className="font-bold text-lg">Update Habit Activity</h3>
                     <p className="py-4">Add your recent activity for habit: {props.habitName}</p>

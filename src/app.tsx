@@ -2,24 +2,7 @@ import HabitsList from "./habitsList/habitsList";
 import Nav from "./nav";
 import { useState } from "react";
 import UpdateActivity from "./updateActivity/updateActivity";
-
-export interface HabitsData {
-  newHabits: Habit[];
-  oldHabits: Habit[];
-}
-
-export interface Habit {
-  id: number;
-  name: string;
-  description: string;
-  timeSpent: HabitActivity[];
-}
-
-interface HabitActivity {
-  id: number;
-  date: string;
-  minutes: number;
-}
+import habitsData from "./db";
 
 export type HabitStateManagement = [
   habitName: string,
@@ -34,8 +17,6 @@ export type ActivityStateManagement = [
   minutes: number,
   setMinutes: React.Dispatch<React.SetStateAction<number>>
 ]
-
-const habitsData: HabitsData = { newHabits: [], oldHabits: [] };
 
 function App() {
   const [habitName, setHabitName] = useState("");
