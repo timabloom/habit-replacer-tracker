@@ -1,7 +1,7 @@
-import HabitsList from "./habitsList";
+import HabitsList from "./habitsList/habitsList";
 import Nav from "./nav";
 import { useState } from "react";
-import UpdateHabits from "./updateHabits";
+import UpdateActivity from "./updateActivity/updateActivity";
 
 export interface HabitsData {
   newHabits: Habit[];
@@ -50,7 +50,7 @@ function App() {
     <>
       <main>
         <HabitsList habitsData={habitsData} habitState={habitState} />
-        <UpdateHabits habitsData={habitsData} activityState={activityState} />
+        <UpdateActivity habitsData={habitsData} activityState={activityState} />
       </main>
       <Nav />
     </>

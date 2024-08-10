@@ -1,4 +1,4 @@
-function PreviousUpdate(props: { date: string, minutes: number }) {
+function PreviousActivityUpdate(props: { date: string, minutes: number }) {
 
     return (
         <>
@@ -13,4 +13,4 @@ function PreviousUpdate(props: { date: string, minutes: number }) {
     );
 }
 
-export default PreviousUpdate;
+export default PreviousActivityUpdate;

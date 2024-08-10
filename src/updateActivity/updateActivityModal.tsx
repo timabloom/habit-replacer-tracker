@@ -1,6 +1,6 @@
-import { ActivityStateManagement, Habit } from "./app";
+import { ActivityStateManagement, Habit } from "../app";
 
-function UpdateHabitModal(props: { id: number, habitName: string, habitActivity: Habit, habitType: string, activityState: ActivityStateManagement }) {
+function UpdateActivityModal(props: { id: number, habitName: string, habitActivity: Habit, habitType: string, activityState: ActivityStateManagement }) {
     const [date, setDate, minutes, setMinutes] = props.activityState;
 
     function handleModal(state: string) {
@@ -62,4 +62,4 @@ function UpdateHabitModal(props: { id: number, habitName: string, habitActivity:
     );
 }
 
-export default UpdateHabitModal;
+export default UpdateActivityModal;

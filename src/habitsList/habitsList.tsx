@@ -1,5 +1,5 @@
 import AddHabitModal from "./addHabitModal";
-import { HabitsData, HabitStateManagement } from "./app";
+import { HabitsData, HabitStateManagement } from "../app";
 
 function HabitsList(props: {habitsData: HabitsData, habitState: HabitStateManagement}) {
 

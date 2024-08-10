@@ -1,4 +1,4 @@
-import { HabitsData, HabitStateManagement } from "./app";
+import { HabitsData, HabitStateManagement } from "../app";
 
 function AddHabitModal(props: { habitType: string, habitsData: HabitsData, habitState: HabitStateManagement }) {
     const [habitName, setHabitName, habitDescription, setHabitDescription] = props.habitState;
