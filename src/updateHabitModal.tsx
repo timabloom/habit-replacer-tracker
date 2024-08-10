@@ -1,14 +1,18 @@
 import { ActivityStateManagement, Habit } from "./app";
 
-function UpdateHabitModal(props: { id: number, habitName: string, habitActivity: Habit, activityState: ActivityStateManagement }) {
+function UpdateHabitModal(props: { id: number, habitName: string, habitActivity: Habit, habitType: string, activityState: ActivityStateManagement }) {
     const [date, setDate, minutes, setMinutes] = props.activityState;
 
     function handleModal(state: string) {
         const modal = document.getElementsByClassName("update-habit-modal") as HTMLCollectionOf<HTMLDialogElement>;
-        if (state === "open") {
+        if (state === "open" && props.habitType === "old") {
             modal[0].showModal();
-        } else {
+        } else if (state === "open") {
+            modal[1].showModal();
+        } else if (props.habitType === "old") {
             modal[0].close();
+        } else {
+            modal[1].close();
         }
     }
 
