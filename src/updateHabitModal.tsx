@@ -20,7 +20,6 @@ function UpdateHabitModal(props: { id: number, habitName: string, habitActivity:
         event.preventDefault();
         props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: 1 });
 
-        console.log(props.habitActivity);
         setDate(new Date().toJSON().slice(0, 10));
         setMinutes(0);
         handleModal("close");
