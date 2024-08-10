@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { Habit } from "./app";
+import { ActivityStateManagement, Habit } from "./app";
 
-function UpdateHabitModal(props: { id: number, habitName: string, habitActivity: Habit }) {
-    const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
-    const [minutes, setMinutes] = useState(0);
+function UpdateHabitModal(props: { id: number, habitName: string, habitActivity: Habit, activityState: ActivityStateManagement }) {
+    const [date, setDate, minutes, setMinutes] = props.activityState;
 
     function handleModal(state: string) {
         const modal = document.getElementsByClassName("update-habit-modal") as HTMLCollectionOf<HTMLDialogElement>;
@@ -16,7 +14,7 @@ function UpdateHabitModal(props: { id: number, habitName: string, habitActivity:
 
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
-        props.habitActivity.timeSpent.push({ date: date, minutes: minutes });
+        props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: 1 });
 
         console.log(props.habitActivity);
         setDate(new Date().toJSON().slice(0, 10));

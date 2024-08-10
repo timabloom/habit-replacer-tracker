@@ -1,7 +1,7 @@
-import { HabitsData } from "./app";
+import { ActivityStateManagement, HabitsData } from "./app";
 import UpdateHabitModal from "./updateHabitModal";
 
-function UpdateHabits(props: { habitsData: HabitsData }) {
+function UpdateHabits(props: { habitsData: HabitsData, activityState: ActivityStateManagement }) {
     return (
         <>
             <h1>Your Habits</h1>
@@ -9,14 +9,14 @@ function UpdateHabits(props: { habitsData: HabitsData }) {
             {props.habitsData.oldHabits.map(habit =>
                 <div key={habit.id}>
                     <h3>{habit.name}</h3>
-                    <UpdateHabitModal id={habit.id} habitName={habit.name} habitActivity={habit} />
+                    <UpdateHabitModal id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
                 </div>
             )}
             <h2>New Habits</h2>
             {props.habitsData.newHabits.map(habit =>
                 <div key={habit.id}>
                     <h3>{habit.name}</h3>
-                    <UpdateHabitModal id={habit.id} habitName={habit.name} habitActivity={habit} />
+                    <UpdateHabitModal id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
                 </div>
             )}
         </>
