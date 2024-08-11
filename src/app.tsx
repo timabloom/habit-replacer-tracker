@@ -33,7 +33,7 @@ function App() {
       <main>
         <HabitsList habitsData={habitsData} habitState={habitState} />
         <UpdateActivity habitsData={habitsData} activityState={activityState} />
-        <HabitsStats />
+        <HabitsStats habitsData={habitsData} />
       </main>
       <Nav />
     </>

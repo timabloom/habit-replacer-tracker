@@ -1,8 +1,9 @@
+import { HabitsData } from "../db";
 import WeekBarChart from "./weekBarChart";
 
-function HabitsStats() {
+function HabitsStats(props: { habitsData: HabitsData }) {
     return (
-        <WeekBarChart />
+        <WeekBarChart habitsData={props.habitsData} />
     );
 }
 

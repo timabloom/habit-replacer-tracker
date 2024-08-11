@@ -1,27 +1,60 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { HabitsData } from "../db";
+import uniqolor from "uniqolor";
 
-function WeekBarChart() {
-    const data = [
-        { name: "Day 1", oldHabits: 60, reading: 20, painting: 50 },
-        { name: "Day 2", oldHabits: 160, reading: 40 },
-        { name: "Day 3", oldHabits: 60, reading: 20 },
-        { name: "Day 4", oldHabits: 50, reading: 40 },
-        { name: "Day 5", oldHabits: 60, reading: 10 },
-        { name: "Day 6", oldHabits: 90, reading: 40 },
-        { name: "Day 7", oldHabits: 0, reading: 40 },
-    ];
+type HabitsStats = { id: string; name: string }[]
+type ActivityStats = { id: string; date: string;[x: string]: string | number; }[]
+
+function WeekBarChart(props: { habitsData: HabitsData }) {
+
+    const oldHabitsStats: HabitsStats = [];
+    const newHabitsStats: HabitsStats = [];
+    const allActivityStats: ActivityStats = [];
+
+    props.habitsData.oldHabits.map(habit => {
+        habit.timeSpent.map(timeSpent => {
+            const habitExist = oldHabitsStats.find(name => name.name === habit.name);
+            if (!habitExist) {
+                oldHabitsStats.push({ id: habit.id, name: habit.name });
+            }
+            const activityExist = allActivityStats.find(d => d.date === timeSpent.date.slice(5));
+            if (!activityExist) {
+                allActivityStats.push({ id: timeSpent.id, date: timeSpent.date.slice(5), [habit.name]: timeSpent.minutes });
+            } else {
+                activityExist[habit.name] = timeSpent.minutes;
+            }
+        });
+    });
+
+    props.habitsData.newHabits.map(habit => {
+        habit.timeSpent.map(timeSpent => {
+            const habitExist = newHabitsStats.find(name => name.name === habit.name);
+            if (!habitExist) {
+                newHabitsStats.push({ id: habit.id, name: habit.name });
+            }
+            const activityExist = allActivityStats.find(d => d.date === timeSpent.date.slice(5));
+            if (!activityExist) {
+                allActivityStats.push({ id: timeSpent.id, date: timeSpent.date.slice(5), [habit.name]: timeSpent.minutes });
+            } else {
+                activityExist[habit.name] = timeSpent.minutes;
+            }
+        });
+    });
 
     return (
         <div className="w-auto mb-20 mr-5" >
             <ResponsiveContainer height={240}>
-                <BarChart data={data} >
-                    <XAxis dataKey="name" stroke="#000" />
+                <BarChart data={allActivityStats} >
+                    <XAxis dataKey="date" stroke="#000" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="oldHabits" fill="#000" barSize={10} />
-                    <Bar dataKey="reading" stackId="a" fill="#8884d8" barSize={10} />
-                    <Bar dataKey="painting" stackId="a" fill="#82ca9d" barSize={10} />
+                    {oldHabitsStats.map(habit =>
+                        <Bar key={habit.id} dataKey={habit.name} fill={`${uniqolor.random().color}`} barSize={10} />
+                    )}
+                    {newHabitsStats.map(habit =>
+                        <Bar key={habit.id} dataKey={habit.name} stackId="a" fill={`${uniqolor.random().color}`} barSize={10} />
+                    )}
                 </BarChart>
             </ResponsiveContainer>
         </div>
