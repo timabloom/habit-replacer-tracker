@@ -41,9 +41,15 @@ button,
 input,
 label {
   line-height: 1.1;
+  font-family: sans-serif;
 }
 
 p {
   max-width: 75ch;
   overflow-wrap: break-word;
+}
+
+h1,
+h2 {
+  font-family: "Overlock SC", sans-serif;
 }
