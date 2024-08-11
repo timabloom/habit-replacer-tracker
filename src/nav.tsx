@@ -1,18 +1,21 @@
 import { useState } from "react";
 
-function Nav() {
+function Nav(props: { displayNone: React.Dispatch<React.SetStateAction<string[]>> }) {
     const [activeStates, setActiveStates] = useState(["active", "", ""]);
 
     function handleClick(index: number) {
         switch (index) {
             case 0:
                 setActiveStates(["active", "", ""]);
+                props.displayNone(["", "hidden", "hidden"]);
                 break;
             case 1:
                 setActiveStates(["", "active", ""]);
+                props.displayNone(["hidden", "", "hidden"]);
                 break;
             case 2:
                 setActiveStates(["", "", "active"]);
+                props.displayNone(["hidden", "hidden", ""]);
         }
     }
 

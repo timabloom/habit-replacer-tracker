@@ -28,14 +28,22 @@ function App() {
   const [minutes, setMinutes] = useState("");
   const activityState: ActivityStateManagement = [date, setDate, minutes, setMinutes];
 
+  const [displayNone, setDisplayNone] = useState(["", "hidden", "hidden"]);
+
   return (
     <>
       <main>
-        <HabitsList habitsData={habitsData} habitState={habitState} />
-        <UpdateActivity habitsData={habitsData} activityState={activityState} />
-        <HabitsStats habitsData={habitsData} />
+        <div className={`${displayNone[0]}`}>
+          <HabitsList habitsData={habitsData} habitState={habitState} />
+        </div>
+        <div className={`${displayNone[1]}`}>
+          <UpdateActivity habitsData={habitsData} activityState={activityState} />
+        </div>
+        <div className={`${displayNone[2]}`}>
+          <HabitsStats habitsData={habitsData} />
+        </div>
       </main>
-      <Nav />
+      <Nav displayNone={setDisplayNone} />
     </>
   );
 }
