@@ -26,6 +26,11 @@ const habitsData: HabitsData = {
                 { id: "1", date: "2024-08-01", minutes: 30 },
                 { id: "2", date: "2024-08-02", minutes: 35 },
                 { id: "3", date: "2024-08-03", minutes: 40 },
+                { id: "4", date: "2024-08-04", minutes: 45 },
+                { id: "5", date: "2024-08-05", minutes: 50 },
+                { id: "6", date: "2024-08-06", minutes: 55 },
+                { id: "7", date: "2024-08-07", minutes: 60 },
+                { id: "8", date: "2024-08-08", minutes: 65 },
             ],
         },
         {
@@ -36,6 +41,11 @@ const habitsData: HabitsData = {
                 { id: "1", date: "2024-08-01", minutes: 25 },
                 { id: "2", date: "2024-08-02", minutes: 20 },
                 { id: "3", date: "2024-08-03", minutes: 30 },
+                { id: "4", date: "2024-08-04", minutes: 22 },
+                { id: "5", date: "2024-08-05", minutes: 28 },
+                { id: "6", date: "2024-08-06", minutes: 26 },
+                { id: "7", date: "2024-08-07", minutes: 24 },
+                { id: "8", date: "2024-08-08", minutes: 32 },
             ],
         },
     ],
@@ -48,9 +58,15 @@ const habitsData: HabitsData = {
                 { id: "1", date: "2024-08-01", minutes: 120 },
                 { id: "2", date: "2024-08-02", minutes: 110 },
                 { id: "3", date: "2024-08-03", minutes: 100 },
+                { id: "4", date: "2024-08-04", minutes: 90 },
+                { id: "5", date: "2024-08-05", minutes: 80 },
+                { id: "6", date: "2024-08-06", minutes: 70 },
+                { id: "7", date: "2024-08-07", minutes: 60 },
+                { id: "8", date: "2024-08-08", minutes: 50 },
             ],
         },
     ],
 };
+
 
 export default habitsData;

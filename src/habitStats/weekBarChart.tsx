@@ -44,7 +44,7 @@ function WeekBarChart(props: { habitsData: HabitsData }) {
     return (
         <div className="w-auto mb-20 mr-5" >
             <ResponsiveContainer height={240}>
-                <BarChart data={allActivityStats} >
+                <BarChart data={allActivityStats.slice(1)} >
                     <XAxis dataKey="date" stroke="#000" />
                     <YAxis />
                     <Tooltip />
