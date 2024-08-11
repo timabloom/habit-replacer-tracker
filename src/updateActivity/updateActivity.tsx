@@ -1,29 +1,31 @@
 import { ActivityStateManagement } from "../app";
 import { HabitsData } from "../db";
 import TimeSpentCard from "./TimeSpentCard";
-import UpdateActivityModal from "./updateActivityModal";
 
 function UpdateActivity(props: { habitsData: HabitsData, activityState: ActivityStateManagement }) {
+
     return (
-        <>
-            <h1>Your Habits</h1>
-            <h2>Old Habits</h2>
-            {props.habitsData.oldHabits.map(habit =>
-                <div key={habit.id}>
-                    <h3>{habit.name}</h3>
-                    <TimeSpentCard timeSpent={habit.timeSpent} />
-                    <UpdateActivityModal id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
-                </div>
-            )}
-            <h2>New Habits</h2>
-            {props.habitsData.newHabits.map(habit =>
-                <div key={habit.id}>
-                    <h3>{habit.name}</h3>
-                    <TimeSpentCard timeSpent={habit.timeSpent} />
-                    <UpdateActivityModal id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
-                </div>
-            )}
-        </>
+        <div className="flex flex-col items-center">
+            <h1 className="text-3xl p-10 pt-16 pb-8">Habit Activity</h1>
+            <h2 className="text-2xl p-5">Habits to be Replaced</h2>
+            <div className="flex flex-wrap justify-center mb-5">
+                {props.habitsData.oldHabits.map(habit =>
+                    <div key={habit.id}>
+                        <h3 className="text-lg p-3">{habit.name}</h3>
+                        <TimeSpentCard timeSpent={habit.timeSpent} id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
+                    </div>
+                )}
+            </div>
+            <h2 className="text-2xl p-5">Habits to Cultivate</h2>
+            <div className="flex flex-wrap justify-center">
+                {props.habitsData.newHabits.map(habit =>
+                    <div key={habit.id}>
+                        <h3 className="text-lg p-3">{habit.name}</h3>
+                        <TimeSpentCard timeSpent={habit.timeSpent} id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
+                    </div>
+                )}
+            </div>
+        </div>
     );
 }
 

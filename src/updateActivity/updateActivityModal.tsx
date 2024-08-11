@@ -27,7 +27,7 @@ function UpdateActivityModal(props: { id: string, habitName: string, habitActivi
 
     return (
         <>
-            <button className="btn btn-wide"
+            <button className="btn"
                 onClick={() => handleModal("open")}>
                 Update
             </button>
