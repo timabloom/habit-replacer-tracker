@@ -33,13 +33,13 @@ function App() {
   return (
     <>
       <main>
-        <div className={`${displayNone[0]}`}>
+        <div className={`${displayNone[0]} mb-20`}>
           <HabitsList habitsData={habitsData} habitState={habitState} />
         </div>
-        <div className={`${displayNone[1]}`}>
+        <div className={`${displayNone[1]} mb-20`}>
           <UpdateActivity habitsData={habitsData} activityState={activityState} />
         </div>
-        <div className={`${displayNone[2]}`}>
+        <div className={`${displayNone[2]} mb-20`}>
           <HabitsStats habitsData={habitsData} />
         </div>
       </main>
