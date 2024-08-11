@@ -15,14 +15,13 @@ function UpdateActivityModal(props: { id: string, habitName: string, habitActivi
         event.preventDefault();
         const activity = props.habitActivity.timeSpent.find(activity => activity.date === date);
         if (activity) {
-            props.habitActivity.timeSpent.push({ date: date, minutes: activity.minutes += minutes, id: `${crypto.randomUUID}` });
+            props.habitActivity.timeSpent.push({ date: date, minutes: activity.minutes += parseInt(minutes), id: `${crypto.randomUUID}` });
         }
         else {
-            props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: `${crypto.randomUUID}` });
+            props.habitActivity.timeSpent.push({ date: date, minutes: parseInt(minutes), id: `${crypto.randomUUID}` });
         }
-
         setDate(new Date().toJSON().slice(0, 10));
-        setMinutes(0);
+        setMinutes("");
         handleModal("close");
     }
 
@@ -52,7 +51,7 @@ function UpdateActivityModal(props: { id: string, habitName: string, habitActivi
                                 </div>
                                 <input className="input input-bordered w-full max-w-xs"
                                     type="number" min="1" max="1440" placeholder="0" required
-                                    value={minutes} onChange={(event) => setMinutes(event.target.valueAsNumber)} />
+                                    value={minutes} onChange={(event) => setMinutes(event.target.value)} />
                             </label>
                             <button className="btn btn-wide" type="submit" >Submit</button>
                         </form>

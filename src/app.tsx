@@ -15,8 +15,8 @@ export type HabitStateManagement = [
 export type ActivityStateManagement = [
   date: string,
   setDate: React.Dispatch<React.SetStateAction<string>>,
-  minutes: number,
-  setMinutes: React.Dispatch<React.SetStateAction<number>>
+  minutes: string,
+  setMinutes: React.Dispatch<React.SetStateAction<string>>
 ]
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
   const habitState: HabitStateManagement = [habitName, setHabitName, habitDescription, setHabitDescription];
 
   const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState("");
   const activityState: ActivityStateManagement = [date, setDate, minutes, setMinutes];
 
   return (
