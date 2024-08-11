@@ -41,10 +41,22 @@ function WeekBarChart(props: { habitsData: HabitsData }) {
         });
     });
 
+    const currentDay = parseInt(new Date().toJSON().slice(8, 10));
+    const currentMonth = new Date().toJSON().slice(5, 7);
+    const previousSevenDays: ActivityStats = [];
+    for (let i = currentDay - 1; i > currentDay - 8; i--) {
+        const activityDay = allActivityStats.find(activity => parseInt(activity.date.slice(3)) === i);
+        if (activityDay) {
+            previousSevenDays.unshift(activityDay);
+        } else {
+            previousSevenDays.unshift({ id: `${i}`, date: `${i > 9 ? `${currentMonth}-${i}` : `${currentMonth}-0${i}`}` });
+        }
+    }
+
     return (
         <div className="w-auto mb-20 mr-5" >
             <ResponsiveContainer height={240}>
-                <BarChart data={allActivityStats.slice(1)} >
+                <BarChart data={previousSevenDays} >
                     <XAxis dataKey="date" stroke="#000" />
                     <YAxis />
                     <Tooltip />
