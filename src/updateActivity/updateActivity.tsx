@@ -1,6 +1,6 @@
 import { ActivityStateManagement } from "../app";
 import { HabitsData } from "../db";
-import PreviousActivityUpdate from "./previousActivityUpdate";
+import TimeSpentCard from "./TimeSpentCard";
 import UpdateActivityModal from "./updateActivityModal";
 
 function UpdateActivity(props: { habitsData: HabitsData, activityState: ActivityStateManagement }) {
@@ -11,9 +11,7 @@ function UpdateActivity(props: { habitsData: HabitsData, activityState: Activity
             {props.habitsData.oldHabits.map(habit =>
                 <div key={habit.id}>
                     <h3>{habit.name}</h3>
-                    {habit.timeSpent.slice(habit.timeSpent.length - 1).map(activity =>
-                        <PreviousActivityUpdate key={activity.id} date={activity.date} minutes={activity.minutes} />
-                    )}
+                    <TimeSpentCard timeSpent={habit.timeSpent} />
                     <UpdateActivityModal id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
                 </div>
             )}
@@ -21,9 +19,7 @@ function UpdateActivity(props: { habitsData: HabitsData, activityState: Activity
             {props.habitsData.newHabits.map(habit =>
                 <div key={habit.id}>
                     <h3>{habit.name}</h3>
-                    {habit.timeSpent.slice(habit.timeSpent.length - 1).map(activity =>
-                        <PreviousActivityUpdate key={activity.id} date={activity.date} minutes={activity.minutes} />
-                    )}
+                    <TimeSpentCard timeSpent={habit.timeSpent} />
                     <UpdateActivityModal id={habit.id} habitName={habit.name} habitActivity={habit} activityState={props.activityState} />
                 </div>
             )}

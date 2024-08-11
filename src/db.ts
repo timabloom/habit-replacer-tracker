@@ -10,7 +10,7 @@ export interface Habit {
     timeSpent: HabitActivity[];
 }
 
-interface HabitActivity {
+export interface HabitActivity {
     id: string;
     date: string;
     minutes: number;

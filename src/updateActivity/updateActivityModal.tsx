@@ -13,7 +13,13 @@ function UpdateActivityModal(props: { id: string, habitName: string, habitActivi
 
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
-        props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: `${crypto.randomUUID}` });
+        const activity = props.habitActivity.timeSpent.find(activity => activity.date === date);
+        if (activity) {
+            props.habitActivity.timeSpent.push({ date: date, minutes: activity.minutes += minutes, id: `${crypto.randomUUID}` });
+        }
+        else {
+            props.habitActivity.timeSpent.push({ date: date, minutes: minutes, id: `${crypto.randomUUID}` });
+        }
 
         setDate(new Date().toJSON().slice(0, 10));
         setMinutes(0);
