@@ -6,11 +6,11 @@ import { getAllActivityStats, getPreviousSevenDays } from "./processStats";
 function WeekBarChart(props: { habitsData: HabitsData }) {
 
     return (
-        <div className="w-auto mr-5" >
+        <div className="w-auto ml-2 mr-4" >
             <ResponsiveContainer height={240}>
                 <BarChart data={getPreviousSevenDays(getAllActivityStats(props.habitsData))} >
                     <XAxis dataKey="date" stroke="#000" />
-                    <YAxis />
+                    <YAxis label={{ value: "minutes", angle: -90, position: "insideLeft" }}/>
                     <Tooltip />
                     <Legend />
                     {props.habitsData.oldHabits.map(habit =>
