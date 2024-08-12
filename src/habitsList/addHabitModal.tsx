@@ -26,7 +26,7 @@ function AddHabitModal(props: { habitType: string, habitsData: HabitsData, habit
 
     return (
         <>
-            <button className="btn"
+            <button className="btn btn-wide"
                 onClick={() => handleModal("open")}>
                 {props.habitType === "old" ? "Add Old" : "Add New"}
             </button>

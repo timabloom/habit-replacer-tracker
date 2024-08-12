@@ -16,7 +16,7 @@ function UpdateActivity(props: { habitsData: HabitsData, activityState: Activity
                     </div>
                 )}
             </div>
-            <h2 className="text-2xl p-5">Habits to Cultivate</h2>
+            <h2 className="text-2xl p-5">New Habits to Cultivate</h2>
             <div className="flex flex-wrap justify-center">
                 {props.habitsData.newHabits.map(habit =>
                     <div key={habit.id}>
