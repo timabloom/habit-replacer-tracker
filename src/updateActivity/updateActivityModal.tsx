@@ -33,14 +33,15 @@ function UpdateActivityModal(props: { id: string, habitName: string, habitActivi
             </button>
 
             <dialog className="modal" id={`${props.id}`}>
-                <div className="modal-box mb-24">
-                    <h3 className="font-bold text-lg">Update Habit Activity</h3>
-                    <p className="py-4">Add your recent activity for habit: {props.habitName}</p>
-                    <div className="modal-action">
+                <div className="modal-box -mt-12 max-w-96">
+                    <h3 className="font-bold text-xl">Habit Activity</h3>
+                    <p className="text-lg py-1">{props.habitName}</p>
+                    <p className="py-2">Please share your most recent activity in minutes.</p>
+                    <div className="modal-action justify-center">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                             onClick={() => handleModal("close")}>✕</button>
-                        <form method="dialog" onSubmit={handleSubmit}>
-                            <label className="form-control w-full max-w-xs">
+                        <form style={{ margin: 0 }} method="dialog" onSubmit={handleSubmit}>
+                            <label className="form-control w-full max-w-xs mb-5">
                                 <div className="label">
                                     <span className="label-text">Date *</span>
                                 </div>
