@@ -7,7 +7,6 @@ function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitNam
     const previousActivity = getPreviousActivity(props.timeSpent);
 
     function getPreviousActivity(timeSpent: HabitActivity[]) {
-        console.log(timeSpent);
         if (timeSpent.length === 0) {
             return;
         }
