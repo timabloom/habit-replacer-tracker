@@ -2,8 +2,11 @@ import HabitsList from "./habitsList/habitsList";
 import Nav from "./nav";
 import { useState } from "react";
 import UpdateActivity from "./updateActivity/updateActivity";
-import habitsData from "./db";
+import { HabitsData } from "./db";
 import HabitsStats from "./habitStats/habitStats";
+import {
+  useQuery
+} from "@tanstack/react-query";
 
 export type HabitStateManagement = [
   habitName: string,
@@ -29,6 +32,19 @@ function App() {
   const activityState: ActivityStateManagement = [date, setDate, minutes, setMinutes];
 
   const [displayNone, setDisplayNone] = useState(["", "hidden", "hidden"]);
+
+  const { isPending, error, data } = useQuery<HabitsData>({
+    queryKey: ["habits"],
+    queryFn: () => fetch("http://localhost:5018/habits").then((result) =>
+      result.json(),
+    )
+  });
+
+  const [habitsData] = useState<HabitsData>(data ? data : {oldHabits: [], newHabits: []});
+
+  console.log(data);
+  console.log(error);
+  console.log(isPending);
 
   return (
     <>
