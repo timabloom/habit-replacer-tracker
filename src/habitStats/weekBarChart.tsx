@@ -3,7 +3,7 @@ import { HabitsData } from "../db";
 import uniqolor from "uniqolor";
 import { getAllActivityStats, getPreviousSevenDays } from "./processStats";
 
-function WeekBarChart(props: { habitsData: HabitsData }) {
+function WeekBarChart(props: { habitsData: HabitsData | undefined }) {
 
     return (
         <div className="w-auto ml-2 mr-4" >
@@ -13,10 +13,10 @@ function WeekBarChart(props: { habitsData: HabitsData }) {
                     <YAxis label={{ value: "minutes", angle: -90, position: "insideLeft" }}/>
                     <Tooltip />
                     <Legend />
-                    {props.habitsData.oldHabits.map(habit =>
+                    {props.habitsData?.oldHabits.map(habit =>
                         <Bar key={habit.id} dataKey={habit.name} fill={`${uniqolor.random().color}`} barSize={10} />
                     )}
-                    {props.habitsData.newHabits.map(habit =>
+                    {props.habitsData?.newHabits.map(habit =>
                         <Bar key={habit.id} dataKey={habit.name} stackId="a" fill={`${uniqolor.random().color}`} barSize={10} />
                     )}
                 </BarChart>

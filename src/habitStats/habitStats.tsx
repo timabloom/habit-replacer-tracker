@@ -1,7 +1,7 @@
 import { HabitsData } from "../db";
 import WeekBarChart from "./weekBarChart";
 
-function HabitsStats(props: { habitsData: HabitsData }) {
+function HabitsStats(props: { habitsData: HabitsData | undefined }) {
     return (
         <>
             <div className="flex flex-col items-center">

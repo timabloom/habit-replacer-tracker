@@ -27,36 +27,26 @@ function App() {
   const [habitDescription, setHabitDescription] = useState("");
   const habitState: HabitStateManagement = [habitName, setHabitName, habitDescription, setHabitDescription];
 
-  const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
-  const [minutes, setMinutes] = useState("");
-  const activityState: ActivityStateManagement = [date, setDate, minutes, setMinutes];
-
   const [displayNone, setDisplayNone] = useState(["", "hidden", "hidden"]);
 
-  const { isPending, error, data } = useQuery<HabitsData>({
+  const { data } = useQuery<HabitsData>({
     queryKey: ["habits"],
     queryFn: () => fetch("http://localhost:5018/habits").then((result) =>
       result.json(),
     )
   });
 
-  const [habitsData] = useState<HabitsData>(data ? data : {oldHabits: [], newHabits: []});
-
-  console.log(data);
-  console.log(error);
-  console.log(isPending);
-
   return (
     <>
       <main>
         <div className={`${displayNone[0]} mb-20`}>
-          <HabitsList habitsData={habitsData} habitState={habitState} />
+          <HabitsList habitsData={data} habitState={habitState} />
         </div>
         <div className={`${displayNone[1]} mb-20`}>
-          <UpdateActivity habitsData={habitsData} activityState={activityState} />
+          <UpdateActivity habitsData={data} />
         </div>
         <div className={`${displayNone[2]} mb-20`}>
-          <HabitsStats habitsData={habitsData} />
+          <HabitsStats habitsData={data} />
         </div>
       </main>
       <Nav displayNone={setDisplayNone} />

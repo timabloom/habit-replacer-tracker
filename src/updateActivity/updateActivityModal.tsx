@@ -1,8 +1,10 @@
-import { ActivityStateManagement } from "../app";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Habit } from "../db";
+import { useState } from "react";
 
-function UpdateActivityModal(props: { id: string, habitName: string, habitActivity: Habit, activityState: ActivityStateManagement }) {
-    const [date, setDate, minutes, setMinutes] = props.activityState;
+function UpdateActivityModal(props: { id: string, habitName: string, habitActivity: Habit }) {
+    const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
+    const [minutes, setMinutes] = useState("");
 
     function handleModal(state: string) {
         const modal = document.getElementById(`${props.id}`) as HTMLDialogElement;
@@ -15,15 +17,38 @@ function UpdateActivityModal(props: { id: string, habitName: string, habitActivi
         event.preventDefault();
         const activity = props.habitActivity.timeSpent.find(activity => activity.date === date);
         if (activity) {
-            props.habitActivity.timeSpent.push({ date: date, minutes: activity.minutes += parseInt(minutes), id: `${crypto.randomUUID}` });
+            setMinutes((activity.minutes + parseInt(minutes)).toString());
+            mutation.mutate({
+                date: date,
+                minutes: parseInt(minutes),
+            });
         }
         else {
-            props.habitActivity.timeSpent.push({ date: date, minutes: parseInt(minutes), id: `${crypto.randomUUID}` });
+            mutation.mutate({
+                date: date,
+                minutes: parseInt(minutes),
+            });
         }
+
         setDate(new Date().toJSON().slice(0, 10));
         setMinutes("");
         handleModal("close");
     }
+
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: (putBody: { date: string, minutes: number }) => fetch(`http://localhost:5018/habits/${props.habitActivity.id}`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+            body: JSON.stringify(putBody),
+        }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["habits"] });
+        },
+    });
 
     return (
         <>

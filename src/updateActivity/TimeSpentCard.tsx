@@ -1,8 +1,7 @@
-import { ActivityStateManagement } from "../app";
 import { Habit, HabitActivity } from "../db";
 import UpdateActivityModal from "./updateActivityModal";
 
-function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitName: string, habitActivity: Habit, activityState: ActivityStateManagement }) {
+function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitName: string, habitActivity: Habit }) {
     const todaysDate = new Date().toJSON().slice(0, 10);
     const previousActivity = getPreviousActivity(props.timeSpent);
 
@@ -22,7 +21,7 @@ function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitNam
                     <div className="stat-title">Time Spent Today</div>
                     <div className="stat-value">{previousActivity?.date === todaysDate ? previousActivity?.minutes : 0}m</div>
                     <div className="stat-desc pb-2">{todaysDate}</div>
-                    <UpdateActivityModal id={props.id} habitName={props.habitName} habitActivity={props.habitActivity} activityState={props.activityState} />
+                    <UpdateActivityModal id={props.id} habitName={props.habitName} habitActivity={props.habitActivity} />
                 </div>
             </div>
         </>

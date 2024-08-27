@@ -2,10 +2,10 @@ import { HabitsData } from "../db";
 
 type ActivityStats = { id: string; date: string;[x: string]: string | number; }[]
 
-export function getAllActivityStats(habitsData: HabitsData) {
+export function getAllActivityStats(habitsData: HabitsData | undefined) {
     const allActivityStats: ActivityStats = [];
 
-    habitsData.oldHabits.map(habit => {
+    habitsData?.oldHabits.map(habit => {
         habit.timeSpent.map(timeSpent => {
             const activityExist = allActivityStats.find(d => d.date === timeSpent.date.slice(5));
             if (!activityExist) {
@@ -16,7 +16,7 @@ export function getAllActivityStats(habitsData: HabitsData) {
         });
     });
 
-    habitsData.newHabits.map(habit => {
+    habitsData?.newHabits.map(habit => {
         habit.timeSpent.map(timeSpent => {
             const activityExist = allActivityStats.find(d => d.date === timeSpent.date.slice(5));
             if (!activityExist) {

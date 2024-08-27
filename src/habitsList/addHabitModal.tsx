@@ -1,7 +1,7 @@
 import { HabitStateManagement } from "../app";
 import { HabitsData } from "../db";
 
-function AddHabitModal(props: { habitType: string, habitsData: HabitsData, habitState: HabitStateManagement }) {
+function AddHabitModal(props: { habitType: string, habitsData: HabitsData | undefined, habitState: HabitStateManagement }) {
     const [habitName, setHabitName, habitDescription, setHabitDescription] = props.habitState;
 
     function handleModal(state: string) {
@@ -14,9 +14,9 @@ function AddHabitModal(props: { habitType: string, habitsData: HabitsData, habit
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
         if (props.habitType === "old") {
-            props.habitsData.oldHabits.push({ id: `${crypto.randomUUID}`, name: habitName, description: habitDescription, timeSpent: [] });
+            props.habitsData?.oldHabits.push({ id: `${crypto.randomUUID}`, name: habitName, description: habitDescription, timeSpent: [] });
         } else {
-            props.habitsData.newHabits.push({ id: `${crypto.randomUUID}`, name: habitName, description: habitDescription, timeSpent: [] });
+            props.habitsData?.newHabits.push({ id: `${crypto.randomUUID}`, name: habitName, description: habitDescription, timeSpent: [] });
         }
 
         setHabitName("");
