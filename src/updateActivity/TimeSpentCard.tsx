@@ -11,7 +11,8 @@ function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitNam
         }
         const datesToNumbers = timeSpent.map(item => new Date(item.date).getTime());
         const previousActivityDate = new Date(Math.max(...datesToNumbers)).toJSON().slice(0, 10);
-        return timeSpent.find(activity => activity.date === previousActivityDate);
+        const previousActivityWithLatestDate = timeSpent.filter(activity => activity.date === previousActivityDate).map(activity => activity.minutes);
+        return previousActivityWithLatestDate.reduce((a, b) => a + b, 0);
     }
 
     return (
@@ -19,7 +20,7 @@ function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitNam
             <div className="stats shadow bg-primary text-primary-content ml-3 mr-3">
                 <div className="stat">
                     <div className="stat-title">Time Spent Today</div>
-                    <div className="stat-value">{previousActivity?.date === todaysDate ? previousActivity?.minutes : 0}m</div>
+                    <div className="stat-value">{previousActivity}m</div>
                     <div className="stat-desc pb-2">{todaysDate}</div>
                     <UpdateActivityModal id={props.id} habitName={props.habitName} habitActivity={props.habitActivity} />
                 </div>
