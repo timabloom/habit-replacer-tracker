@@ -7,7 +7,7 @@ function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitNam
 
     function getPreviousActivity(timeSpent: HabitActivity[]) {
         if (timeSpent.length === 0) {
-            return;
+            return 0;
         }
         const datesToNumbers = timeSpent.map(item => new Date(item.date).getTime());
         const previousActivityDate = new Date(Math.max(...datesToNumbers)).toJSON().slice(0, 10);
