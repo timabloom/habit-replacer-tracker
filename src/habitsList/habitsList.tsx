@@ -1,9 +1,8 @@
-import { HabitStateManagement } from "../app";
 import { HabitsData } from "../db";
 import AddHabitModal from "./addHabitModal";
 
 
-function HabitsList(props: { habitsData: HabitsData | undefined, habitState: HabitStateManagement }) {
+function HabitsList(props: { habitsData: HabitsData | undefined}) {
 
     return (
         <div className="flex flex-col items-center">
@@ -16,7 +15,7 @@ function HabitsList(props: { habitsData: HabitsData | undefined, habitState: Hab
                         <p className="pb-4">{habit.description}</p>
                     </div>
                 )}
-                <AddHabitModal habitType="old" habitsData={props.habitsData} habitState={props.habitState} />
+                <AddHabitModal habitType="old" />
             </div>
             <h2 className="text-2xl p-5 pb-8 pt-8">New Habits to Cultivate</h2>
             <div className="flex flex-col max-w-64">
@@ -26,7 +25,7 @@ function HabitsList(props: { habitsData: HabitsData | undefined, habitState: Hab
                         <p className="pb-4">{habit.description}</p>
                     </div>
                 )}
-                <AddHabitModal habitType="new" habitsData={props.habitsData} habitState={props.habitState} />
+                <AddHabitModal habitType="new" />
             </div>
         </div>
     );

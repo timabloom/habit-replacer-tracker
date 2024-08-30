@@ -23,10 +23,6 @@ export type ActivityStateManagement = [
 ]
 
 function App() {
-  const [habitName, setHabitName] = useState("");
-  const [habitDescription, setHabitDescription] = useState("");
-  const habitState: HabitStateManagement = [habitName, setHabitName, habitDescription, setHabitDescription];
-
   const [displayNone, setDisplayNone] = useState(["", "hidden", "hidden"]);
 
   const { data } = useQuery<HabitsData>({
@@ -40,7 +36,7 @@ function App() {
     <>
       <main>
         <div className={`${displayNone[0]} mb-20`}>
-          <HabitsList habitsData={data} habitState={habitState} />
+          <HabitsList habitsData={data} />
         </div>
         <div className={`${displayNone[1]} mb-20`}>
           <UpdateActivity habitsData={data} />
