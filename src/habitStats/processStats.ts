@@ -1,4 +1,4 @@
-import { HabitsData } from "../types";
+import { HabitActivity, HabitsData } from "../types";
 
 type ActivityStats = { id: string; date: string;[x: string]: string | number; }[]
 
@@ -42,4 +42,14 @@ export function getPreviousSevenDays(stats: ActivityStats) {
         }
     }
     return previousSevenDays;
+}
+
+export function getPreviousActivity(timeSpent: HabitActivity[]) {
+    if (timeSpent.length === 0) {
+        return 0;
+    }
+    const datesToNumbers = timeSpent.map(item => new Date(item.date).getTime());
+    const previousActivityDate = new Date(Math.max(...datesToNumbers)).toJSON().slice(0, 10);
+    const previousActivityWithLatestDate = timeSpent.filter(activity => activity.date === previousActivityDate).map(activity => activity.minutes);
+    return previousActivityWithLatestDate.reduce((a, b) => a + b, 0);
 }

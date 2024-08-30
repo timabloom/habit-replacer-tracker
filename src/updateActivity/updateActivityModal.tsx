@@ -1,20 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Habit } from "../types";
 import { useState } from "react";
-
-async function updateActivity(props: { id: string, date: string, minutes: number }) {
-    const response = await fetch(`http://localhost:5018/habits/${props.id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            date: props.date,
-            minutes: props.minutes
-        }),
-    });
-    return response.json();
-}
+import { updateActivity } from "../api/requests.ts";
 
 function UpdateActivityModal(props: { id: string, habitName: string, habitActivity: Habit }) {
     const [date, setDate] = useState(new Date().toJSON().slice(0, 10));

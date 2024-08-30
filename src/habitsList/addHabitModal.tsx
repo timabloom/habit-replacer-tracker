@@ -1,38 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { addNewHabit, addOldHabit } from "../api/requests";
 
-async function addNewHabit(props: { name: string, description: string }) {
-    const response = await fetch("http://localhost:5018/habits/new", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            name: props.name,
-            description: props.description
-        }),
-    });
-    return response.json();
-}
-
-async function addOldHabit(props: { name: string, description: string }) {
-    const response = await fetch("http://localhost:5018/habits/old", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            name: props.name,
-            description: props.description
-        }),
-    });
-    return response.json();
-}
 
 function AddHabitModal(props: { habitType: string }) {
     const [habitName, setHabitName] = useState("");
     const [habitDescription, setHabitDescription] = useState("");
-    
+
     const queryClient = useQueryClient();
 
     const mutationPostNewHabit = useMutation({
