@@ -14,10 +14,10 @@ function WeekBarChart(props: { habitsData: HabitsData }) {
                     <Tooltip />
                     <Legend />
                     {props.habitsData.oldHabits.map(habit =>
-                        <Bar key={habit.id} dataKey={habit.name} fill={`${uniqolor.random().color}`} barSize={10} />
+                        <Bar key={habit.id} dataKey={habit.name} stackId="a" fill={`${uniqolor.random().color}`} barSize={10} />
                     )}
                     {props.habitsData.newHabits.map(habit =>
-                        <Bar key={habit.id} dataKey={habit.name} stackId="a" fill={`${uniqolor.random().color}`} barSize={10} />
+                        <Bar key={habit.id} dataKey={habit.name} stackId="b" fill={`${uniqolor.random().color}`} barSize={10} />
                     )}
                 </BarChart>
             </ResponsiveContainer>
