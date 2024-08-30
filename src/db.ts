@@ -47,7 +47,7 @@ const habitsData: HabitsData = {
     oldHabits: [
         {
             id: "3",
-            name: "Social Media Browsing",
+            name: "Social Media",
             description: "Reduce time spent on social media",
             timeSpent: [
                 { id: "1", date: "2024-08-21", minutes: 120 },
