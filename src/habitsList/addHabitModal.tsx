@@ -3,7 +3,7 @@ import { useState } from "react";
 import { addNewHabit, addOldHabit } from "../api/requests";
 
 
-function AddHabitModal(props: { habitType: string }) {
+function AddHabitModal({ habitType }: { habitType: string }) {
     const [habitName, setHabitName] = useState("");
     const [habitDescription, setHabitDescription] = useState("");
 
@@ -24,7 +24,7 @@ function AddHabitModal(props: { habitType: string }) {
     });
 
     function handleModal(state: string) {
-        const modal = document.getElementById(`${props.habitType}`) as HTMLDialogElement;
+        const modal = document.getElementById(`${habitType}`) as HTMLDialogElement;
         return state === "open"
             ? modal.showModal()
             : modal.close();
@@ -32,7 +32,7 @@ function AddHabitModal(props: { habitType: string }) {
 
     function handleSubmit(event: { preventDefault: () => void; }) {
         event.preventDefault();
-        if (props.habitType === "old") {
+        if (habitType === "old") {
             mutatePostOldHabit.mutate({ name: habitName, description: habitDescription });
         } else {
             mutationPostNewHabit.mutate({ name: habitName, description: habitDescription });
@@ -47,13 +47,13 @@ function AddHabitModal(props: { habitType: string }) {
         <>
             <button className="btn btn-wide"
                 onClick={() => handleModal("open")}>
-                {props.habitType === "old" ? "Add Old" : "Add New"}
+                {habitType === "old" ? "Add Old" : "Add New"}
             </button>
 
-            <dialog className="modal" id={props.habitType}>
+            <dialog className="modal" id={habitType}>
                 <div className="modal-box -mt-12 max-w-96">
                     <h3 className="font-bold text-xl">Add Habit</h3>
-                    <p className="py-2">{props.habitType === "old" ? "Please share a bad habit to be replaced." : "Please share a new good habit."}</p>
+                    <p className="py-2">{habitType === "old" ? "Please share a bad habit to be replaced." : "Please share a new good habit."}</p>
                     <p className="text-lg py-1">Notice!</p>
                     <p className="py-2">This app currently only supports habits with a duration.</p>
                     <div className="modal-action justify-center">

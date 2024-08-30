@@ -4,7 +4,7 @@ import { useState } from "react";
 import UpdateActivity from "./updateActivity/updateActivity";
 import { HabitsData } from "./types";
 import HabitsStats from "./habitStats/habitStats";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery} from "@tanstack/react-query";
 import { getHabits } from "./api/requests";
 
 function App() {
