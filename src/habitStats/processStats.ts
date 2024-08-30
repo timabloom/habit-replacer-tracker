@@ -1,4 +1,4 @@
-import { HabitsData } from "../db";
+import { HabitsData } from "../types";
 
 type ActivityStats = { id: string; date: string;[x: string]: string | number; }[]
 

@@ -1,4 +1,4 @@
-import { HabitsData } from "../db";
+import { HabitsData } from "../types";
 import AddHabitModal from "./addHabitModal";
 
 

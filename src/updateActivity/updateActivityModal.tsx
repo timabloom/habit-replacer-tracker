@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Habit } from "../db";
+import { Habit } from "../types";
 import { useState } from "react";
 
 async function updateActivity(props: { id: string, date: string, minutes: number }) {

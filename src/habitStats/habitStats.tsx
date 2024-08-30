@@ -1,4 +1,4 @@
-import { HabitsData } from "../db";
+import { HabitsData } from "../types";
 import WeekBarChart from "./weekBarChart";
 
 function HabitsStats(props: { habitsData: HabitsData | undefined }) {

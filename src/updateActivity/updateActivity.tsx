@@ -1,4 +1,4 @@
-import { HabitsData } from "../db";
+import { HabitsData } from "../types";
 import TimeSpentCard from "./TimeSpentCard";
 
 function UpdateActivity(props: { habitsData: HabitsData | undefined }) {

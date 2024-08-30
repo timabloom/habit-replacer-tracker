@@ -1,4 +1,4 @@
-import { Habit, HabitActivity } from "../db";
+import { Habit, HabitActivity } from "../types";
 import UpdateActivityModal from "./updateActivityModal";
 
 function TimeSpentCard(props: { timeSpent: HabitActivity[], id: string, habitName: string, habitActivity: Habit }) {

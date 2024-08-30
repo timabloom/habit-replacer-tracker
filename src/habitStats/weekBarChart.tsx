@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { HabitsData } from "../db";
+import { HabitsData } from "../types";
 import uniqolor from "uniqolor";
 import { getAllActivityStats, getPreviousSevenDays } from "./processStats";
 

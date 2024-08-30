@@ -2,7 +2,7 @@ import HabitsList from "./habitsList/habitsList";
 import Nav from "./nav";
 import { useState } from "react";
 import UpdateActivity from "./updateActivity/updateActivity";
-import { HabitsData } from "./db";
+import { HabitsData } from "./types";
 import HabitsStats from "./habitStats/habitStats";
 import {
   useQuery
